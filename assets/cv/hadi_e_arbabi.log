@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.10.27)  2 NOV 2023 18:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.10.27)  2 NOV 2023 20:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -786,13 +786,13 @@ LaTeX Font Warning: Font shape `U/wasy/m/n' in size <5.5> not available
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\\' on input line 313.
 
+[1
+
+{C:/Users/ci1hax/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\\' on input line 319.
 
-[1
-
-{C:/Users/ci1hax/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\newline' on input line 365.
@@ -873,10 +873,6 @@ Package hyperref Warning: Suppressing link with empty target on input line 482.
 Package hyperref Warning: Suppressing link with empty target on input line 489.
 
 
-( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-MUL )
-( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-MUL ) ( FP-EVAL ( FP-UPN
-( FP-ADD ) ( FP-ADD ) ( FP-ADD ) ( FP-ADD ) ( FP-ADD ) ( FP-ADD ) ( FP-ADD )
-( FP-ADD ) ( FP-ADD ) ( FP-ADD ) ( FP-ADD ) ( FP-DIV ) ( FP-TRUNC ) ) )
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -894,16 +890,16 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `hadi_e_arbabi.out' has not changed.
-(rerunfilecheck)             Checksum: D64E184125706D53F618B0A05CB82E6A;1858.
+(rerunfilecheck)             Checksum: B7BC0D4EE7DEBD245395381F2BFD50F9;1858.
  ) 
 Here is how much of TeX's memory you used:
- 17196 strings out of 475385
- 268321 string characters out of 2776434
- 691513 words of memory out of 3000000
- 38264 multiletter control sequences out of 15000+600000
+ 17184 strings out of 475385
+ 268283 string characters out of 2776434
+ 690513 words of memory out of 3000000
+ 38252 multiletter control sequences out of 15000+600000
  509640 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,80p,926b,595s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,13n,80p,976b,595s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn
 _ks2ukx.enc}{C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libe
 rtine/lbtn_r4tgzq.enc}{C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/enc/
@@ -921,7 +917,7 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTBI.pfb><C:/
 Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibe
 rtineTI.pfb><C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/type1/public/n
 ewtx/txsys.pfb>
-Output written on hadi_e_arbabi.pdf (6 pages, 358706 bytes).
+Output written on hadi_e_arbabi.pdf (6 pages, 359075 bytes).
 PDF statistics:
  208 PDF objects out of 1000 (max. 8388607)
  21 named destinations out of 1000 (max. 500000)
