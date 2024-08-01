@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.10.27)  13 DEC 2023 16:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2022.10.27)  1 AUG 2024 16:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -734,8 +734,6 @@ LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 12.0pt on input line 256.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 10.0pt on input line 257.
-LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 257.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\\' on input line 259.
@@ -751,77 +749,94 @@ LinuxLibertineT-TLF.
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 262.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 7.3pt on input line 290.
+(Font)              scaled to size 7.3pt on input line 305.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 5.5pt on input line 290.
+(Font)              scaled to size 5.5pt on input line 305.
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-290.
+305.
 
 (C:\Users\ci1hax\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-290.
+305.
 
 (C:\Users\ci1hax\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-290.
+305.
 
 (C:\Users\ci1hax\AppData\Local\Programs\MiKTeX\tex/latex/newtx\untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 29
-0.
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 30
+5.
 
 (C:\Users\ci1hax\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 290.
+(Font)              size <5> substituted on input line 305.
 
+LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 10.0pt on input line 305.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 313.
+(hyperref)                removing `\\' on input line 328.
 
 [1
 
 {C:/Users/ci1hax/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 319.
+(hyperref)                removing `\\' on input line 334.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\newline' on input line 365.
+(hyperref)                removing `\newline' on input line 380.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\newline' on input line 365.
-
-
-Overfull \hbox (6.7343pt too wide) in paragraph at lines 367--368
-\OT1/LinuxLibertineT-TLF/m/it/10 Sytems\OT1/LinuxLibertineT-TLF/m/n/10 , (Ac-ce
-pted), with Q. Li, C. Rob-son, G. Punzo, & M. May-field. []doi:10.1109/jsyst.20
-23.3329765[] 
- []
+(hyperref)                removing `\newline' on input line 380.
 
 [2]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 404.
+(hyperref)                removing `\\' on input line 422.
 
 
-Overfull \hbox (27.5716pt too wide) in paragraph at lines 406--407
+Overfull \hbox (27.5716pt too wide) in paragraph at lines 424--425
 \OT1/LinuxLibertineT-TLF/m/it/10 pe-dia of Ur-ban and Re-gional Fu-tures\OT1/Li
 nuxLibertineT-TLF/m/n/10 , Cham: Pal-grave Macmil-lan, (2021), with L. M. Tan.[
 ]doi:10.1007/978-
  []
 
+! Extra }, or forgotten \endgroup.
+<recently read> }
+                 
+l.433 ...Accounts Committee. \emph{UK Parliament}}
+                                                  , (2024), with T. Wood, S....
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Extra }, or forgotten \endgroup.
+<recently read> }
+                 
+l.435 ...Net Zero Committee. \emph{UK Parliament}}
+                                                  , (2023), with R. Macrorie...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
 [3]
-Overfull \hbox (14.61465pt too wide) in paragraph at lines 437--438
+Overfull \hbox (14.61465pt too wide) in paragraph at lines 461--462
 \OT1/LinuxLibertineT-TLF/m/n/10 with D. Abbey, C., Gillot, W. O. C. Ward, & D. 
 Dens-ley Tin-gley. []doi:10.1088/1755-1315/1078/1/012016[] 
  []
@@ -829,77 +844,89 @@ Dens-ley Tin-gley. []doi:10.1088/1755-1315/1078/1/012016[]
 [4]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 466.
+(hyperref)                removing `\\' on input line 490.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 466.
+(hyperref)                removing `\\' on input line 490.
 
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 466.
+(Font)              scaled to size 9.0pt on input line 490.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 466.
+(Font)              scaled to size 9.0pt on input line 490.
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 466.
-
-Package hyperref Warning: Suppressing link with empty target on input line 468.
-
-
+(Font)              scaled to size 9.0pt on input line 490.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/b/it' will be
-(Font)              scaled to size 10.0pt on input line 469.
+(Font)              scaled to size 10.0pt on input line 493.
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/b/it' will be
-(Font)              scaled to size 10.0pt on input line 469.
+(Font)              scaled to size 10.0pt on input line 493.
+! Undefined control sequence.
+<argument> ...tween UK and EU Partners -- PPHE24\1
+                                                  00399.
+l.500 ...een UK and EU Partners -- PPHE24\100399.}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-Package hyperref Warning: Suppressing link with empty target on input line 475.
+
+Package hyperref Warning: Suppressing link with empty target on input line 506.
 
 
 
-Overfull \hbox (1.98508pt too wide) in paragraph at lines 475--479
+Package hyperref Warning: Suppressing link with empty target on input line 513.
+
+
+
+Overfull \hbox (1.98508pt too wide) in paragraph at lines 513--517
 \TS1/LinuxLibertineT-TLF/b/it/10 £\OT1/LinuxLibertineT-TLF/b/it/10 12k \OT1/Lin
 uxLibertineT-TLF/m/it/10 -- Co-investigator for re-search com-mis-sion on new b
 uild ver-sus retrofit for hous-ing in Rochdale.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 475--479
+Underfull \hbox (badness 10000) in paragraph at lines 513--517
 
  []
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 482.
+Package hyperref Warning: Suppressing link with empty target on input line 520.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 489.
+Package hyperref Warning: Suppressing link with empty target on input line 527.
 
 
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\\' on input line 655.
+(hyperref)                removing `\\' on input line 695.
 
+[6]
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 753.
+(Font)              scaled to size 8.0pt on input line 795.
 LaTeX Font Info:    Font shape `OT1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 6.2pt on input line 753.
-
+(Font)              scaled to size 6.2pt on input line 795.
+ 
 AED: lastpage setting LastPage
-[6] (hadi_e_arbabi.aux)
+[7] (hadi_e_arbabi.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `hadi_e_arbabi.out' has not changed.
-(rerunfilecheck)             Checksum: B7BC0D4EE7DEBD245395381F2BFD50F9;1858.
+(rerunfilecheck)             Checksum: BCAC7420405315B2EB888D4BB866FC49;1858.
  ) 
 Here is how much of TeX's memory you used:
- 17184 strings out of 475385
- 268283 string characters out of 2776434
+ 17189 strings out of 475385
+ 268329 string characters out of 2776434
  690513 words of memory out of 3000000
- 38252 multiletter control sequences out of 15000+600000
+ 38256 multiletter control sequences out of 15000+600000
  509640 words of font info for 101 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,13n,80p,976b,595s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,13n,80p,965b,598s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libertine/lbtn
 _ks2ukx.enc}{C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/libe
 rtine/lbtn_r4tgzq.enc}{C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/enc/
@@ -917,9 +944,9 @@ ata/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibertineTBI.pfb><C:/
 Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/type1/public/libertine/LinLibe
 rtineTI.pfb><C:/Users/ci1hax/AppData/Local/Programs/MiKTeX/fonts/type1/public/n
 ewtx/txsys.pfb>
-Output written on hadi_e_arbabi.pdf (6 pages, 359297 bytes).
+Output written on hadi_e_arbabi.pdf (7 pages, 365839 bytes).
 PDF statistics:
- 209 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
+ 226 PDF objects out of 1000 (max. 8388607)
+ 22 named destinations out of 1000 (max. 500000)
  113 words of extra memory for PDF output out of 10000 (max. 10000000)
 
