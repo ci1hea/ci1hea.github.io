@@ -1,0 +1,842 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ''??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+%\renewcommand{\familydefault}{\sfdefault}
+%\usepackage{helvet}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{fp}
+\usepackage{comment}
+\usepackage{wasysym}
+\usepackage{lipsum}
+\usepackage{etaremune}
+\usepackage{hyphenat}
+
+\usepackage{fontawesome}
+\newcommand{\seticon}[1]{\csname #1\endcsname}
+
+% Simpler bibsection for CV sections
+% (thanks to natbib for inspiration)
+\makeatletter
+\newlength{\bibhang}
+\setlength{\bibhang}{1em} %1em}
+\newlength{\bibsep}
+ {\@listi \global\bibsep\itemsep \global\advance\bibsep by\parsep}
+\newenvironment{bibsection}%
+        {\begin{enumerate}{}{%
+%        {\begin{list}{}{%
+        \setlength{\leftmargin}{\bibhang}%
+        \setlength{\itemindent}{-\leftmargin}%
+        \setlength{\itemsep}{\bibsep}%
+        \setlength{\parsep}{\z@}%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{enumerate}\vspace{-.6\baselineskip}}
+%        {\end{list}\vspace{-.6\baselineskip}}
+\makeatother
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ''of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=1.0in,     % Length of section titles
+%            marginparsep=0mm,       % Space between titles and text
+%            margin=15mm,               % 1 inch margins
+%            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+\usepackage[paper=a4paper,
+            includefoot, % Uncomment to put page number above margin
+            marginparwidth=35mm,    % Length of section titles
+            marginparsep=0mm,       % Space between titles and text
+            margin=20mm,              % 25mm margins
+            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ''of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    Page \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% Finally, give us PDF bookmarks
+\usepackage{color,hyperref}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+%\hypersetup{colorlinks,breaklinks,
+%            linkcolor=darkblue,urlcolor=darkblue,
+%            anchorcolor=darkblue,citecolor=darkblue}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ''right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ''name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ''Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+% The section headings
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+%    \hyphenpenalty=10000%
+    \vspace{1.3\baselineskip}%
+    \phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\large\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+% An itemize-style list with lots of space between items
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{lonelist}[1][\enskip\textbullet]%
+        {\begin{list}{#1}{%
+        \setlength{\partopsep}{0pt}%
+        \setlength{\topsep}{0pt}}}
+        {\end{list}\vspace{-.6\baselineskip}}
+
+% An itemize-style list with little space between items
+\newenvironment{innerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+\newenvironment{loneinnerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt]}
+        {\end{itemize}\vspace{-.6\baselineskip}}
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+% Uses hyperref to link DOI
+\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% For \url{SOME_URL}, links SOME_URL to the url SOME_URL
+\providecommand*\url[1]{\href{#1}{#1}}
+% Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+\renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\makeheading{Hadi Arbabi \normalfont -- (23.07.1993, Iranian)}
+\vspace*{25mm}
+{\Huge Hadi Arbabi}\\[1cm]
+%RISE - the Resources, Infrastructure Systems, and built Environments Research Group\\
+%The University of Sheffield\\
+%Sheffield, UK \texttt{S1~3JD}\\[.25cm]
+%July 23, 1993 -- Tehran, Iran\\[.25cm]
+\seticon{faPhone}~~~+44 (0) 114 222 5751\\
+\seticon{faEnvelopeO}~~~\href{mailto:h.arbabi@sheffield.ac.uk}{h.arbabi@sheffield.ac.uk}\\
+\seticon{faChain}~~~\href{https://ci1hea.github.io}{ci1hea.github.io}\\
+%\seticon{faChain}~~~\href{https://theymightbedragonkings.wordpress.com/}{theymightbedragonkings.wordpress.com}\\
+%\section{Contact Information}
+%D1, ASPECT, 3 Edward St.\hfill +44 (0) 7722 970 831 \\
+%Sheffield, UK -- S3 7GJ\hfill \email{harbabi1@sheffield.ac.uk}
+
+\section{}
+Hadi's work and research interests sit at the interface of data-driven urban analytics and planning. hadi’s overall body of research focuses on the challenges relating to resource consumption and productivity in urban systems often in the context of planetary resource capacity and extreme climate change. Their previous work has focused on a spatially multi-scale examination of urban systems and the extent to which their performance is influenced by their embedded physical infrastructure. Hadi's broader research activity and interests include but are not limited to practical uses of \textbf{urban scaling} and \textbf{allometry}, city morphology, infrastructure planning for \textbf{agglomeration}, \textbf{network analysis} of intra- and inter-city urban flows, and building stocks and \textbf{urban metabolism}. As of September 2024, Hadi has over 230 citations and an h-index of 9 on Google Scholars.\par
+%%%
+\section{Academic\\Positions}
+\href{http://www.shef.ac.uk/civil}{The University of Sheffield}
+\begin{outerlist}
+	\item[] Lecturer in the Built Environment\hfill {August 2020 -- Present}\\
+	\href{ci1hea.github.io}
+	{Resources, Infrastructure Systems, \& built-Environments Research Group} 
+	\item[] Research Associate\hfill {April 2019 -- July 2020}\linebreak
+	 Digital Urban Characterization \href{https://gtr.ukri.org/projects?ref=EP\%2FV012053\%2F1}{[EP/S016627/1, EP/V012053/1]}
+%	\href{https://gtr.ukri.org/projects?ref=EP\%2FV012053\%2F1}{Active Building Centre [EP/S016627/1, EP/V012053/1]}
+%	\href{http://envbldg.shef.ac.uk/?q=people/dr-hadi-arbabi}
+%	{Resources, Infrastructure Systems, \& built-Environments Research Group} 
+	\item[] Part-Time Research Associate\hfill {November 2018 -- February 2019}\linebreak
+	Engineering Complexity Resilience Network Plus \href{https://gtr.ukri.org/projects?ref=EP\%2FN010019\%2F1}{[EP/N010019/1]}
+%	\href{https://gtr.ukri.org/projects?ref=EP\%2FN010019\%2F1}{Engineering Complexity Resilience Network Plus [EP/N010019/1]}
+%	\href{http://envbldg.shef.ac.uk/?q=people/dr-hadi-arbabi}
+%	{Resources, Infrastructure Systems, \& built-Environments Research Group}
+\end{outerlist}
+%%%
+\renewcommand{\labelenumi}{}
+\section{Professional Memberships}
+\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+	\item Fellow of AdvanceHE (no. PR273991)\\Regional Studies Association (no. 15429)\\Regional Sciences Association International (no. RSAI08605)\\The OR Society (no. 031935)
+\end{etaremune}
+%%%
+\section{Education}
+\href{http://www.shef.ac.uk/civil}{The University of Sheffield}
+\begin{outerlist}
+%	\item[] PGCert\hfill {2021 -- 2024}\\
+%	\href{https://www.sheffield.ac.uk/programmeregulationsfinder/programme?code=EDUT233&org=SHEFFIELD&start=01-Aug-2017&moa=PT&year=2024}
+%	{Teaching for Learning in Higher Education}, 
+%	\begin{innerlist}
+%		\item[\APLminus] Thesis Title:\\ \emph{Urban Productivity \& Spatial Patterns Across Scales--\\A Multi-Scale Exploration of Urban Networks and Their Hierarchical Configurations}
+		%		Urban Productivity \& Spatial Patterns Across Scales--\\
+		%        \item[\APLminus] Primary Supervisor:
+		%              \href{https://www.shef.ac.uk/civil/staff/academic/mmay}
+		%                   {Prof. Martin Mayfield}
+		%              \href{https://www.sheffield.ac.uk/management/staff/pmccann/index}
+		%                   {Prof. Philip McCann}
+		%              \href{http://www.sheffield.ac.uk/usp/staff/gordon_dabinett}
+		%                   {Prof. Gordon Dabinett}
+		
+%	\end{innerlist}
+	\item[] PhD\hfill {2015 -- 2019}\\
+	\href{https://www.sheffield.ac.uk/civil/research/groups/rise-group}
+	{Resources, Infrastructure Systems, \& built-Environments}, 
+	\begin{innerlist}
+		\item[\APLminus] Thesis Title:\\ \emph{Urban Productivity \& Spatial Patterns Across Scales--\\A Multi-Scale Exploration of Urban Networks and Their Hierarchical Configurations}
+		%		Urban Productivity \& Spatial Patterns Across Scales--\\
+		%        \item[\APLminus] Primary Supervisor:
+		%              \href{https://www.shef.ac.uk/civil/staff/academic/mmay}
+		%                   {Prof. Martin Mayfield}
+		%              \href{https://www.sheffield.ac.uk/management/staff/pmccann/index}
+		%                   {Prof. Philip McCann}
+		%              \href{http://www.sheffield.ac.uk/usp/staff/gordon_dabinett}
+		%                   {Prof. Gordon Dabinett}
+		
+	\end{innerlist}
+	\item[] MEng\hfill {2011 -- 2015}\\
+	\href{https://www.sheffield.ac.uk/civil/ug/courses/hk2d}
+	{Architectural Engineering (First-Class Honors)}, 
+	\begin{innerlist}
+		\item[\APLminus] Dissertation Title:\\ \emph{Influence of Anthropic and Spatial Characteristics of Cities upon Their Energy Metabolism}
+%		%        \item[\APLminus] Supervisor:
+%		%              \href{https://www.shef.ac.uk/civil/staff/academic/mmay}
+%		%                   {Prof. Martin Mayfield}
+	\end{innerlist}
+\end{outerlist}
+%%%
+\renewcommand{\labelenumi}{}
+\section{Review\\Activities}
+\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+	%	Regional Studies Regional Science (Associate Editor), 
+	\item Regional Studies; Journal of the Royal Society Interface; Science of the Total Environment;\\Regional Studies, Regional Science; Scientific Reports; Journal of Environmental Management;\\Energies; ISPRS International Journal of Geo-Information; Sustainability; Applied Sciences;\\Transportation Research Interdisciplinary Perspectives; Energy Research \& Social Science;\\Remote Sensing; GIScience \& Remote Sensing; Cleaner Production Letters
+\end{etaremune}
+%%%
+\section{Professional Standing \&\\ Awards}
+\href{https://www.tandfonline.com/action/journalInformation?show=editorialBoard&journalCode=rsrs20}{Associate Editor}\hfill {2022 -- 2025}\\
+\emph{Regional Studies, Regional Science} -- A Journal of the Regional Studies Association 
+
+\blankline
+
+`Real Zero' in a Hurry, DecarboN8 International Conference \hfill {Summer 2021}\\
+\emph{Invited Session Chair for Innovation and Infrastructure Sustainability: Methods, Metrics and Measures}
+
+\blankline
+
+International Industrial Ecology Day \hfill {Summer 2021}\\
+\emph{Session Organizer for Bottom-Up Urban Built Environment MFA: Data, Methods, Challenges and Comparability}
+
+\blankline
+
+
+%Regional Science Association International, British and Irish Section \hfill {Summer 2017}\\
+%\emph{The Early Career Prize for Best Presentation} --- (Paper C\ref{rsai-bi})
+%
+%\blankline
+%
+%The University of Sheffield \hfill {Autumn 2015 -- Summer 2019}\\
+%\emph{Faculty scholarship to undertake doctoral research}% in the Department of Civil \& Structural Engineering}
+%
+%\blankline
+%
+The University of Sheffield \hfill {Summer 2015}\\
+\emph{Mappin Medal and Premium for Greatest Distinction Shown by a Candidate on a MEng Program}% Reading for a Degree in the Department of Civil \& Structural Engineering}
+%
+%\blankline
+%
+%The Institution of Structural Engineers (IStructE)\hfill {Spring 2014 -- Winter 2015}\\
+%\emph{Young Members' Panel invited membership}
+%
+%\blankline
+%
+%Chartered Institute of Building Services Engineers (CIBSE), Yorkshire Region \hfill {Autumn 2013}\\
+%\emph{CIBSE Yorkshire Award for Outstanding Academic Achievement}
+%
+\blankline
+%
+%Sheffield International College \hfill {Summer 2011}\\
+%\emph{Progression Scholarship for Academic Achievement}\par
+%%
+\renewcommand{\labelenumi}{J\theenumi.} 
+\section{Selected\newline~Research\newline~Articles}
+\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+	
+	\item Built Environment Stocks in the Context of a Master Planned City: A Case Study of Chandigarh, India. \emph{Journal of Industrial Ecology}, \textbf{28}, 573-588 (2024), with W. Mihkelson, S. Hincks, \& D. Densley Tingley.~\href{https://doi.org/10.1111/jiec.13466}{doi:10.1111/jiec.13466}
+	
+	\item Component-Level Residential Building Material Stock Characterization Using Computer Vision Techniques. \emph{Environment Science \& Technology}, \textbf{58}(7), 3224-3234 (2024), with M. Dai, J. Jurczyk, R. Mao, W. O. C. Ward, M. Mayfield, G. Liu, \& D. Densley Tingley.~\href{https://doi.org/10.1021/acs.est.3c09207}{doi:10.1021/acs.est.3c09207}
+		
+	\item A Systematic Approach to Climate Resilience Assessment of Infrastructure Networks. \emph{IEEE Sytems Journal}, \textbf{18}(1), 24-35 (2024), with Q. Li, C. Robson, G. Punzo, \& M. Mayfield.~\\\href{hrrps://doi.org/10.1109/JSYST.2023.3329765}{doi:10.1109/jsyst.2023.3329765}
+	
+	\item Regional Economic Resilience, Trophic	Characteristics, and Ecological Analogies. \emph{Papers in Regional Science}, \textbf{102}(6), 1127-1145 (2023), with G. Punzo.~\href{https://doi.org/10.1111/pirs.12766}{doi:10.1111/pirs.12766}
+	
+	\item Towards an automated workflow for large-scale housing retrofit. \emph{Environmental Research Letters}, \textbf{18}, 061006 (2023), with L. M. Tan, W. O. C. Ward, X. Li, D. Densley Tingley, A. Khan, \& M. Mayfield.~\href{https://doi.org/10.1088/1748-9326/acd797}{doi:10.1088/1748-9326/acd797}
+
+	\item Estimating Energy Consumption of Residential Buildings at Scale with Drive-by Image Capture. \emph{Building and Environment}, \textbf{234}, 110188 (2023), with W. O. C. Ward, X. Li, Y. Sun, M. Dai, D. Densley Tingley, \& M. Mayfield.~\href{https://doi.org/10.1016/j.buildenv.2023.110188}{doi:10.1016/j.buildenv.2023.110188}
+	
+	\item The Intrinsic Cybernetics of Large Complex Systems and How Droughts Turn into Floods. \emph{Science of the Total Environment}, \textbf{859}(2), 159979 (2023), with G. Punzo.~\\\href{https://doi.org/10.1016/j.scitotenv.2022.159979}{doi:10.1016/j.scitotenv.2022.159979}
+	
+	\item Scalable Residential Building Geometry Characterisation Using Vehicle-Mounted Camera System. \emph{Energies}, \textbf{15}(16), 6090 (2022), with M. Dai, W. O. C. Ward, D. Densley Tingley, \& M. Mayfield.~\href{https://doi.org/10.3390/en15166090}{doi:10.3390/en15166090}
+
+	\item Net Zero by 2050: Investigating Carbon-Budget Compliant Retrofit Measures for the English Housing Stock. \emph{Renewable and Sustainable Energy Reviews}, \textbf{161}, 112384 (2022), with X. Li, G. Bennett, T. Oreszczyn, \& D. Densley Tingley.~\href{https://doi.org/10.1016/j.rser.2022.112384}{doi:10.1016/j.rser.2022.112384}
+
+	\item A Scalable Data Collection, Characterization, and Accounting Framework for Urban Material Stocks. \emph{Journal of Industrial Ecology}, \textbf{26}(1), 58-71 (2021), with M. Lanau, X. Li, G. Meyers, M. Dai, M. Mayfield, \& D. Densley Tingley.~\href{http://dx.doi.org/10.1111/jiec.13198}{doi:10.1111/jiec.13198}
+	
+	\item Mapping Resource Effectiveness across Urban Systems. \emph{npj Urban Sustainability}, \textbf{1}, 20 (2021), with L. M. Tan, P. Brockway, D. Densley Tingley, \& M. Mayfield.~\\\href{http://dx.doi.org/10.1038/s42949-020-00009-3}{doi:10.1038/s42949-020-00009-3}
+
+	\item On the Use of Random Graphs in Analysing Resource Utilization in Urban Systems. \emph{Royal Society Open Science}, \textbf{7}, 200087 (2020), with G. Punzo, G. Meyers, L. M. Tan, Q. Li, D. Densley Tingley, \& M. Mayfield.~\href{http://dx.doi.org/10.1098/rsos.200087}{doi:10.1098/rsos.200087}
+	
+	\item Productivity, Infrastructure, and Urban Density -- an Allometric Comparison of Three European City-Regions across Scales. \emph{Journal of the Royal Statistical Society: Series A (Statistics in Society)}, \textbf{183}(1), 211-228 (2020), with M. Mayfield \& P. McCann.~\href{https://doi.org/10.1111/rssa.12490}{doi:10.1111/rssa.12490}
+		
+	\item On Development Logic of City-Regions: Inter- Versus Intra-City Mobility in England and Wales. \emph{Spatial Economic Analysis}, \textbf{14}(3), 301-320 (2019), with M. Mayfield \& P. McCann.~\\\href{https://doi.org/10.1080/17421772.2019.1569762}{doi:10.1080/17421772.2019.1569762}
+	
+	\item Urban Performance at Different Boundaries in England and Wales through the Settlement Scaling Theory. \emph{Regional Studies}, \textbf{53}(6), 887-899 (2019), with M. Mayfield \& G. Dabinett.~\\\href{http://dx.doi.org/10.1080/00343404.2018.1490501}{doi:10.1080/00343404.2018.1490501}
+
+	\item An Ecological Thermodynamic Approach in Urban Metabolism: Measuring Resource Utilization with Open System Network Effectiveness Analysis. \emph{Applied Energy}, \textbf{254}, 113618 (2019), with L. M. Tan, P. E. Brockway, D. Densley Tingley, \& M. Mayfield.~\\\href{https://doi.org/10.1016/j.apenergy.2019.113618}{doi:10.1016/j.apenergy.2019.113618}
+			
+	\item Ecological Network Analysis on Intra-city Metabolism of Functional Urban Areas in England and Wales. \emph{Resources, Conservation \& Recycling}, \textbf{138}, 172-182 (2018), with L. M. Tan, Q. Li, Y. Sheng, D. Densley Tingley, M. Mayfield, \& D. Coca.~\href{https//doi.org/10.1016/j.resconrec.2018.06.010}{doi:10.1016/j.resconrec.2018.06.010}\label{sure.net}
+
+	\item Urban and Rural --- Population and Energy Consumption Dynamics in Local Authorities within England and Wales. \emph{Buildings}, \textbf{6}(3), 34 (2016), with M. Mayfield.~\\\href{http://dx.doi.org/10.3390/buildings6030034}{doi:10.3390/buildings6030034}
+	
+\end{etaremune}
+%%
+\renewcommand{\labelenumi}{R\theenumi.}
+%\section{Chapters \&\\Reports}
+%\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+%	\item Resource Effectiveness in and across Urban Systems. In R. C. Brears (Ed.) \emph{The Palgrave Encyclopedia of Urban and Regional Futures}, Cham: Palgrave Macmillan, (2021), with L. M. Tan.\href{https://dx.doi.org/10.1007/978-3-030-51812-7_202-1}{doi:10.1007/978-3-030-51812-7\_202-1}
+%	
+%	\item Quantifying Agglomeration Productivity Potential in Long-Term
+%	Infrastructure Planning (PIN – Productivity Projects Fund). \emph{Productivity Insights Network}, (2020), with J. Pannell, S. Hincks, \& G. Punzo.~\href{https://ci1hea.github.io/assets/pdf/publications/Arbabi%20et%20al.%20-%202020%20-%20Quantifying%20Agglomeration%20Productivity%20Potential%20i.pdf}{doi: available here}\label{rpin}
+%\end{etaremune}
+%%
+\renewcommand{\labelenumi}{O\theenumi.}
+\section{Others}
+\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+	\item Government Resilience: Extreme Weather, Written Evidence Submitted to the Public Accounts Committee. \emph{UK Parliament}}, (2024), with T. Wood, S. Sadati, G. Punzo,  \& M. Mayfield.~\href{https://committees.parliament.uk/work/8133/government-resilience-extreme-weather/publications/written-evidence/?SearchTerm=arbabi&DateFrom=&DateTo=&SessionId=}{doi: available here}
+	
+	\item Heating Our Homes, Written Evidence Submitted to the Energy Security and Net Zero Committee. \emph{UK Parliament}}, (2023), with R. Macrorie, M. Zune, D. Witherley, R. Sulley, W. Eadson, \& D. Densley Tingley.~\href{https://committees.parliament.uk/work/7830/heating-our-homes/publications/written-evidence/?SearchTerm=arbabi&DateFrom=&DateTo=&SessionId=}{doi: available here}
+	
+%	\item Comments on Bettignies et al., `The Scale-Dependent Behaviour of Cities: A Cross-Cities Multiscale Driver Analysis of Urban Energy Use' Sustainability 2019, 11, 3246. \emph{Sustainability}, \textbf{14}, 4230 (2022), with G. Meyers, L. M. Tan, \& M. Mayfield.~\href{https://doi.org/10.3390/su14074230}{doi:10.3390/su14074230}
+%	
+%	\item Comments on `A Multi-Level Framework for Metabolism in Urban Energy Systems from an Ecological Perspective' by Barrera et al. (2018). \emph{Resources, Conservation \& Recycling}, \textbf{136}, 463-465 (2018), with L. M. Tan \& M. Mayfield.~\href{https://doi.org/10.1016/j.resconrec.2018.04.028}{doi:10.1016/j.resconrec.2018.04.028}
+\end{etaremune}
+%%
+\renewcommand{\labelenumi}{T\theenumi.}
+\section{Invited Talks}
+\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+	\item Regions at Risk: Extreme Climate Change, Population \& Displacement. In \href{https://sites.google.com/sheffield.ac.uk/grantham-centre-symposium-2023/programme}{\emph{Adapting to climate change: Local, national and international perspectives}}. Grantham Centre for Sustainable Futures: Annual Symposium 2023, UK: 11 October 2023.
+	\item Urban Densification: Is This the Future for Our Cities? In \href{https://festivalofdebate.com/2023/urban-densification-is-this-the-future-for-our-cities}{\emph{Festival of Debate}}. Opus Independents, UK: 10 May 2023.
+	\item The Tensions between Density, Mobility, \& Economic Output in Long-Term Mobility Planning. In  \href{https://transportforthenorth.com/northern-evidence-hub/northern-evidence-academic-forum/}{\emph{Northern Evidence Academic Forums}}. Transport for the North, UK: 12 May 2021.
+	\item On the Development Logic of City-Regions. In \emph{Connect to Collaborate: Accelerating Infrastructure Transitions towards Connected Places}. The University of Bristol, UK: 23 May 2019. (An ESRC co-funded workshop through the \href{https://productivityinsightsnetwork.co.uk/}{Productivity Insights Network})
+\end{etaremune}
+%%%
+\renewcommand{\labelenumi}{C\theenumi.}
+\section{Recent\newline~Conferences}
+\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+		
+	\item Fabric Energy Efficiency in Housing Retrofit: The Role of Whole-life Operational and Embodied Carbon Emissions. In \emph{\href{https://plea2024.pl/?page_id=7944}{37th Passive and Low Energy Architecture Conference: (Re)thinking Resilience}}. Wrocław: 2024, with M. Zune, \& D. Densley Tingley.
+	
+	\item Deviations from Agglomeration Expectations: Accessibility, Density, and Local Characteristics. In \emph{\href{https://www.rsai-bis.org/uploads/1/3/4/6/13469404/programme2022_online.pdf}{Regional Sciences Association International-British and Irish Section 50$^{th}$ Annual Conference}}. Bristol: 2024, with G. Punzo.
+	
+	\item Extreme Climate Change Impacts on Urban Infrastructure and Support Systems. In \emph{\href{https://doi.org/10.5194/egusphere-egu23-15799}{the EGU General Assembly 2023}}. Vienna: 2023, with T. Wood, \& M. Mayfield.
+	
+	\item Regional Economic Resilience, Trophic Coherence, and Ecological Analogies. In \emph{\href{https://www.rsai-bis.org/uploads/1/3/4/6/13469404/programme2022_online.pdf}{Regional Sciences Association International-British and Irish Section 48$^{th}$ Annual Conference}}. Stirling: 2022, with G. Punzo.
+		
+	\item Demolish or Reuse? - The Balance between Operational and Embodied Emissions in the Retrofit of Commercial Buildings. In \emph{\href{https://www.sbe22.berlin}{Sustainable Built Environment D-A-CH Conference}}. Berlin: 2022, with D. Abbey, C., Gillot, W. O. C. Ward, \& D. Densley Tingley.~\href{https://doi.org/10.1088/1755-1315/1078/1/012016}{doi:10.1088/1755-1315/1078/1/012016}
+	
+%	\item Deep Learning Based Residential Energy Prediction Using EPC and GSV. In \emph{\href{https://www.sbe22.berlin}{Sustainable Built Environment D-A-CH Conference}}. Berlin: 2022, with Y. Sheng, M. Mayfield, M. \`{A}lvarez, \& W. O. C. Ward.~\href{https://doi.org/10.1088/1755-1315/1078/1/012038}{doi:10.1088/1755-1315/1078/1/012038}
+%	
+%	\item Measuring the Cityscape: A Pipeline from Street-Level Capture to Urban Quantification. In \emph{\href{https://www.sbe22.berlin}{Sustainable Built Environment D-A-CH Conference}}. Berlin: 2022, with W. O. C. Ward, M. Dai, Y. Sun, D. Densley Tingley, \& M. Mayfield.~\href{https://doi.org/10.1088/1755-1315/1078/1/012036}{doi:10.1088/1755-1315/1078/1/012036}
+%	
+%	\item Spatial Consistency and Patterns in Agglomeration Elasticities within and across European Urban Systems. In \emph{\href{http://www.rsai-bis.org/previous-conferences.html}{Regional Science Association International-British and Irish Section 47$^{th}$ Annual Conference}}. Cambridge, UK: 2019.
+%	
+%	\item Limiting Factors in Achieving Overall Circular Economic Effectiveness: an Analytical Assessment. In \emph{\href{http://www.confercare.manchester.ac.uk/events/iccce2019/programme/}{1$^{st}$ International Conference on Construction Circular Economy}}. Manchester, UK: 2019, with G. Punzo, G. Meyers, L. M. Tan, Q. Li, D. Densley Tingley, \& M. Mayfield.
+%	
+%	\item Finding Northern Powerhouse, or How to Grow Your Own City Regions. In \emph{\href{https://www.regionalstudies.org/events/rsa-winter-2017/}{Regional Studies Association Winter Conference}}. London, UK: 2017, with M. Mayfield \& P. McCann.
+%	
+%	\item Ecological Network Analysis on Intra-city Metabolism of Functional Urban Areas in England and Wales. In \emph{\href{https://spacesandflows.com/about/history/2017-conference}{Spaces \& Flows: Eighth International Conference on Urban and ExtraUrban Studies}}. Hull, UK: 2017, with L. M. Tan, Q. Li, Y. Sheng, N. Stanton, T. J. Valentine, \& E. B. Fraser.\label{c2rise.net}
+%	
+%	\item Ecological Network Analysis of Inter-city Metabolism of Functional Urban Areas in England and Wales. In \emph{Proceedings of the Department of Civil and Structural Engineering}. Sheffield, UK: 2017, with L. M. Tan, N. Stanton, T. J. Valentine, Q. Li, Y. Sheng, \& E. B. Fraser.\label{c1rise.net}
+%	
+%	\item A Look at Urban Performance Balance across Different Boundaries in England and Wales. In \emph{\href{http://www.rsai-bis.org/previous-conferences.html}{Regional Science Association International-British and Irish Section 46$^{th}$ Annual Conference}}. Harrogate, UK: 2017, with M. Mayfield, \& G. Dabinett.\label{rsai-bi}
+%	
+%	\item The Importance of Understanding the Material Metabolism of the Built Environment. In \emph{\href{https://www.wsbe17hongkong.hk/presentation-files}{World Sustainable Built Environment Conference}}. Hong Kong: 2017, with D. Densley Tingley \& M. Durkin.
+%	
+%	\item Too Large and Too Sparse, or Why the UK Northern Powerhouse Does Not Perform to a London Standard. In \emph{\href{https://www.regionalstudies.org/events/rsa-stud-ec-conf-2016/}{Regional Studies Association Student \& Early Career Conference 2016}}. Newcastle, UK: 2016, with M. Mayfield \& G. Dabinett. 
+%	
+%	\item Avoiding Reductionism in Disaster Prevention and the Role of Complexity. In \emph{\href{https://aues.kz/?page_id=10276\&lang=en}{Vestnick of Almaty University of Power Engineering and Telecommunications Special Issue 2016}}, 14--22. Almaty, Kazakhstan: 2016, with G. Punzo \& M. Mayfield. 
+%	
+%	\item Urban and Rural -- An Exploratory Look at Population and Energy Consumption in Local Authorities within England and Wales. In \emph{\href{https://research.hud.ac.uk/art-design/events/regional-urbanism/}{Regional Urbanism in the Era of Globalisation}}. Huddersfield, UK: 2016, with M. Mayfield.
+%	
+%	\item Renewable Energy Technologies in Campus-Sized Developments: A Spatial Study. In \emph{\href{https://www.cibse.org/Technical-Symposium-2015/Past-papers-case-studies-archive/2015}{CIBSE Technical Symposium 2015}}. London, UK: 2015, with B. R. Lazarov \& M. Mayfield.\label{y3sure}
+\end{etaremune}
+%
+\section{Recent\\Funding\\\small{(\textbf{\pounds315k} apportioned)}}
+
+\href{https://gow.epsrc.ukri.org/NGBOViewGrant.aspx?GrantRef=EP/Y530578/1}{EPSRC}\hfill {June 2024}\\
+\emph{\textbf{\pounds6m} -- Co-investigator for BuildZero: transforming the UK's buildings for zero material extraction, zero carbon and zero waste -- EP/Y530578/1.}
+\FPset\xiv{6416474}
+\FPset\xivp{0.05}
+
+\blankline
+
+\href{https://www.thebritishacademy.ac.uk/news/the-british-academy-awards-horizon-europe-pump-priming-collaboration-funding-to-develop-horizon-europe-collaborations/}{British Academy}\hfill {March 2024}\\
+\emph{\textbf{\pounds10k} -- Principal-investigator for Pump Priming Collaboration between UK and EU Partners -- PPHE24\100399.}
+\FPset\xiii{9905}
+\FPset\xiiip{0.5}
+
+\blankline
+
+\href{}{QR Policy Support Fund}\hfill {October 2023}\\
+\emph{\textbf{\pounds36k} -- Principal-investigator for award to support Transfort for the North investigating the changing profile of climate related transport infrastructure failure in the North.}
+\FPset\ix{36444}
+\FPset\ixp{0.5}
+
+\blankline
+
+%\href{}{Rochdale Boroughwide Housing}\hfill {January 2023}\\
+%\emph{\textbf{\pounds12k} -- Co-investigator for research commission on new build versus retrofit for housing in Rochdale.}%ES/L011921/1
+%\FPset\xii{12533}
+%\FPset\xiip{0.3}
+%
+%\blankline
+
+%\href{}{MAKE Architects}\hfill {July 2022}\\
+%\emph{\textbf{\pounds20k} -- Co-investigator for research commission on new build versus retrofit office development.}%ES/L011921/1
+%\FPset\xi{20278}
+%\FPset\xip{0.2}
+%
+%\blankline
+%
+%\href{}{Community Renewal Fund}\hfill {June 2022}\\
+\emph{\textbf{\pounds42k} -- Institutional principal-investigator for research commission awarded by the Doncaster Metropolitan Borough Council on residential retrofit planning.}
+\FPset\x{42993}
+\FPset\xp{0.34}
+
+\blankline
+%
+%\href{https://www.ubdc.ac.uk/news-media/2021/november/urban-big-data-centre-s-data-service-awarded-new-funding-from-esrc/}{ESRC Urban Big Data Centre}\hfill {April 2022}\\
+%\emph{\textbf{\pounds138k} -- Institutional principal-investigator for the residential mobile sensing for Glasgow Urban Big Data Center [ES/L011921/1].}
+%\FPset\ix{138856}
+%\FPset\ixp{0.34}
+
+%\blankline
+
+RE Development Fund\hfill {January 2022}\\
+\emph{\textbf{\pounds4m} -- Co-investigator for the housing and infrastructure theme of the South Yorkshire Sustainability Centre funded by RE.}
+\FPset\viii{4144960}
+\FPset\viiip{0.04}
+
+\blankline
+
+ATI Towards Turing 2.0\hfill {October 2021}\\
+\emph{\textbf{\pounds755k} -- Co-investigator for the energy modelling digital twin of the Digital Twins for High-Value Engineering Applications program.}
+\FPset\vii{755580}
+\FPset\viip{0.02}
+
+\blankline
+
+ESRC Impact Acceleration Account \hfill {October 2021}\\
+\emph{\textbf{\pounds19k} -- Co-investigator for award allocated by the ESRC-funded IAA to support unlocking productivity in the Sheffield City Region through changes to the mobility network}
+\FPset\vi{19255}
+\FPset\vip{0.3}
+
+\blankline
+
+RE Higher Education Innovation Fund \hfill {April 2021}\\
+\emph{\textbf{\pounds36k} -- Co-investigator for award allocated by the Research England-funded HEIF to support decarbonization through knowledge exchange partnership with Barnsley Metropolitan Borough Council and South Yorkshire Mayoral Combined Authority}
+\FPset\v{36942}
+\FPset\vp{0.33}
+
+\blankline
+
+RE Higher Education Innovation Fund \hfill {January 2021}\\
+\emph{\textbf{\pounds37k} -- Co-investigator for award allocated by the Research England-funded HEIF to support the development of a regional emissions accounting and budgeting framework in partnership with the South Yorkshire Mayoral Combined Authority}
+\FPset\iv{37210}
+\FPset\ivp{0.50}
+
+\blankline
+
+EPSRC Impact Acceleration Account \hfill {January 2021}\\
+\emph{\textbf{\pounds9k} -- Principal investigator and project lead for award allocated by the EPSRC-funded IAA to support the trial of an automated residential retrofit assessment in partnership with Barnsley Metropolitan Borough Council}
+\FPset\iii{9823}
+\FPset\iiip{0.80}
+
+\blankline
+
+\href{https://productivityinsightsnetwork.co.uk/projects/}{Productivity Insights Network Productivity Project Funding} \hfill {March 2020}\\
+\emph{\textbf{\pounds9k} -- Principal investigator and project lead for award allocated by the ESRC-funded Productivity Insights Network to support new and ambitious interdisciplinary directions in productivity research across the social sciences that engage partners and deliver impact on Quantifying Agglomeration Productivity Potential in Long-Term Infrastructure Planning} % --- (Report R\ref{rpin})
+\FPset\ii{9805}
+\FPset\iip{0.34}
+
+\blankline
+
+%Productivity Insights Network Early Career Seed Funding \hfill {November 2019}\\
+%\emph{\textbf{\pounds500} -- Award allocated by the ESRC-funded Productivity Insights Network to further develop a research idea presented at the network's early career sandpit event}
+%\FPset\i{500}
+%\FPset\ip{1}
+
+
+%\FPmul\im\i\ip
+%\FPmul\iim\ii\iip
+%\FPmul\iiim\iii\iiip
+%\FPmul\ivm\iv\ivp
+%\FPmul\vm\v\vp
+%\FPmul\vim\vi\vip
+%\FPmul\viim\vii\viip
+%\FPmul\viiim\viii\viiip
+%%\FPmul\ixm\ix\ixp
+%\FPmul\xm\x\xp
+%\FPmul\xim\xi\xip
+%\FPmul\xiim\xii\xiip
+%\FPmul\xiiim\xii\xiiip
+%\FPmul\xivm\xii\xivp
+%
+%\FPeval\s{trunc((\im+\iim+\iiim+\ivm+\vm+\vim+\viim+\viiim+\ixm+\xm+\xim+\xiim+\xivm)/1000:0)}
+%%
+%$\s$
+
+%%%
+%\section{Studentships}
+%%Undergraduate Summer Research Award \hfill {June 2022}\\
+%%\emph{\textbf{\pounds1,250} -- Scholarship awarded by the Department of Civil \& Structural Engineering for a six-week research project}\par
+%%
+%%\blankline
+%
+%EPSRC ECR DTP Studentship \hfill {October 2023}\\
+%\emph{\textbf{\pounds76,445} -- Scholarship awarded by the University of Sheffield as part of a EPSRC DTP paying UKRI fees and stipend for up to 3.5 years} -- (Student P\ref{ecrdtp})\par
+%
+%\blankline
+%
+%Sheffield Undergraduate Research Experience Award\\
+%\emph{\textbf{\pounds12,060}} --
+%Scholarship awarded by the Department of Civil \& Structural Engineering for a six-week research project --- (Papers C\ref{c1rise.net}, C\ref{c2rise.net}, and J\ref{sure.net})\\
+%Elanor Stonebridge \hfill {June 2023}\\
+%Hasan Shwaish \hfill {June 2022}\\
+%Carmen Truong \hfill {June 2021}\\
+%Chloe Quinn \hfill {June 2019}\\
+%Qianqian Li, Yulan Sheng, Nathaniel Stanton, \hfill {June 2017}\\
+%Thamira Joy Valentine, Elspeth Fraser\\
+%Han Ding \hfill {June 2016}
+%
+%\blankline
+%
+%Undergraduate Summer Research Award \hfill {June 2014}\\
+%\emph{\textbf{\pounds1,080} -- Scholarship awarded by the Department of Civil \& Structural Engineering for a six-week research project} --- (Paper C\ref{y3sure})\par
+%
+%\section{Grant\\Support}
+%Contributions to Funded Research
+%\begin{outerlist}
+%	\item[] \href{https://gtr.ukri.org/projects?ref=EP\%2FS029273\%2F1}{Multi-scale, circular economic potential of non-residential building stock}\hfill {2020 -- 2022}\\
+%	Danielle Densley Tingley (PI)\\
+%	EPSRC [EP/S029273/1], \pounds381,024\\
+%	Role: Named Researcher, contributed to development of work packages and writing the initial proposal draft.
+%	
+%	\item[] \href{https://gtr.ukri.org/projects?ref=EP\%2FV012053\%2F1}{Active Building Centre}\hfill {2018 -- 2022}\\
+%	Ahsan Khan (PI), Martin Mayfield (Institutional Co-I)\\
+%	EPSRC [EP/S016627/1, EP/V012053/1], \pounds9,324,025\\
+%	Role: Named Researcher, contributed to establishing collaboration links between the Swansea University (lead research organization) and the University of Sheffield and the development of the work package targeting residential building retrofit.
+%\end{outerlist}
+%%
+%\renewcommand{\labelenumi}{P\theenumi.}
+%\section{Doctoral Supervision}%\\\small{(formal \& informal)}}
+%\hspace*{-5ex}\href{http://www.civil.shef.ac.uk}{The University of Sheffield}
+%\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+%	\item Margo Sulek \hfill {2024 -- Present}\\\textit{A Risky Road: How Does Urban Morphology Change Cities' Risk Levels for Urban Explosions?}\label{ecrdtp}
+%	\item Anna Fedotova (FT)\hfill {2024 -- Present}\\
+%	Primary Supervisor: Charles Gillott\\
+%	\textit{Threats to, and Opportunities for, Global Building Stocks under Extreme Climate Change}
+%	\item Ben Johnstone Bray (FT)\hfill {2023 -- Present}\\
+%	\textit{Extreme Climate Change Compatible Residential Energy Retrofit}
+%	\item Ioana Jelea (FT)\hfill {2023 -- Present}\\
+%	Primary Supervisor: Giuliano Punzo\\
+%	\textit{Complexity and Urban Systems}
+%	\item Marcel Fehr (PT), Primary Supervisor. \hfill {2021 -- Present}\\\textit{Climate Change and Credit Risk for Mortgage Portfolios}
+%	\item Danielle Abbey (FT)\hfill {2021 -- Present}\\
+%	Primary Supervisor: Danielle Densley Tingley\\
+%	\textit{Energy Retrofit for Non-Residential Buildings}
+%	\item Yulan Sheng (FT)\hfill {2020 -- 2024}\\
+%	 Primary Supervisor: Martin Mayfield\\
+%	 \textit{Deep Learning for Urban Thermal Energy Analysis} 
+%%	\item Qianqian Li, Primary Supervisor: Martin Mayfield\hfill {2019 -- Present}\\\textit{Analyzing the Resilience of Critical Infrastructure System Under Extreme Climate Change} 
+%%	\item Joshua Banner, Primary Supervisor: Martin Mayfield\hfill {2019 -- Present}\\\textit{Climate Change Impacts Upon Cities}
+%	\item Will Mihkelson (FT)\hfill {2019 -- 2023}\\
+%	Primary Supervisor: Danielle Densley Tingley\\
+%	\textit{Understanding the Relationship Between Resource Consumption and Development Levels} 
+%\end{etaremune}
+%%
+%\renewcommand{\labelenumi}{D\theenumi.}
+%\section{Dissertation Supervision}
+%\hspace*{-5ex}\href{http://www.civil.shef.ac.uk}{The University of Sheffield}
+%\begin{etaremune}[leftmargin=0ex, topsep=0ex]
+%	\item Alva Murphy, MEng\hfill {2021}\\\textit{Energy for the Growth and Maintenance of Countries}
+%	\item Richard Lansbury, MEng\hfill {2021}\\\textit{The Energy for Growth and Maintenance of US States}
+%%	\item Will Mihkelson, MEng\hfill {2019}\\\textit{Where is the Balance Between Adaptable and Optimised Structure?}
+%	\item Qianqian Li, MEng\hfill {2019}\\\textit{Exploring the Effects of Urban Networks' Characteristics on Their Ability to Maximise Resource Utilisation Efficiency}
+%	\item Arnas Mikalauskas, BEng\hfill {2019}\\\textit{Building Height Optimisation in Urban Areas Based on Rooftop Solar and Wind Energy Generation and Building Heating and Cooling Demands}
+%	\item Lewis Garland, MEng\hfill {2018}\\\textit{Exploring Neighbourhood and City Development Heterogeneity Trajectory}
+%	\item Edie Hatter, MEng\hfill {2017}\\\textit{Scaling Countries and Their Energy Consumption Patterns}
+%	\item Matthew Efford, MEng\hfill {2017}\\\textit{Integration of Community Structure and Ecological Network Analysis to Investigate the Metabolism of Hong Kong}
+%	\item Shiyu Fu, MSc\hfill {2016}\\\textit{A Systemic Urban Energy Assessment: Case Study of Guan Yin Qiao Community, Chongqing, China}
+%\end{etaremune}
+%%
+%\section{Teaching\\Activities}
+%Program Coordinator, the University of Sheffield
+%\begin{innerlist}[topsep=0ex]
+%	\item[] \href{https://www.sheffield.ac.uk/undergraduate/courses/2023/architectural-engineering-meng}{MEng Architectural Engineering} \hfill {2022 -- Present}
+%\end{innerlist}
+%%
+%%\blankline
+%%
+%Module Lead, the University of Sheffield
+%\begin{innerlist}[topsep=0ex]
+%	\item[] \href{https://sites.google.com/sheffield.ac.uk/departmentmodules/civ40257}{CIV4025 -- Thermodynamics for Buildings} \hfill {2020 -- 2021}
+%		\item[] \href{https://sites.google.com/sheffield.ac.uk/departmentmodules/civ4017}{CIV4017 -- Computational Fluid Dynamics} \hfill {2020 -- Present}
+%	\item[] \href{https://sites.google.com/sheffield.ac.uk/departmentmodules/civ201}{CIV201 -- Sustainable Buildings} \hfill {2022 -- Present}
+%	\item[] \href{https://sites.google.com/sheffield.ac.uk/departmentmodules/civ201}{CIV204 -- Sustainable Buildings} \hfill {2023 -- Present}
+%\end{innerlist}
+%
+%Module Contributor, the University of Sheffield
+%\begin{innerlist}[topsep=0ex]
+%	\item[] {GEE301 -- Interdisciplinary Group Design Project} \hfill {2022 -- Present}
+%%	\item[] \href{https://sites.google.com/sheffield.ac.uk/departmentmodules/civ4017}{CIV4017/6017 -- Computational Fluid Dynamics} \hfill {2020 -- Present}
+%\end{innerlist}
+
+%\blankline
+
+%Graduate Teaching Assistant, the University of Sheffield \hfill {2015 -- 2019}
+%\begin{innerlist}[topsep=0ex]
+%	\item[] CIV201 -- Sustainable Buildings (Lecture \& Tutorial Delivery and Assessment)
+%	%		Department of Civil \& Structural Engineering\\
+%	\item[] CIV173 -- Engineering Sustainability (Lecture \& Tutorial Delivery and Assessment)
+%	%        Department of Civil \& Structural Engineering\\	     
+%	\item[] MEC162 -- Engineering Solids, Liquids and Gases (Tutorial Delivery)
+%	%        Department of Civil \& Structural Engineering\\
+%	\item[] ARC6818 -- Elements of Computational Design I (Tutorial Delivery)
+%	%		Department of Civil \& Structural Engineering\\	
+%	\item[] CIV6014 -- Computational Fluid Dynamics (Tutorial Delivery and Assessment)
+%	%		Department of Civil \& Structural Engineering\\
+%	\item[] CIV6012 -- Thermodynamics for Buildings (Lecture \& Tutorial Delivery and Assessment)
+%	%		Department of Civil \& Structural Engineering\\
+%\end{innerlist}
+
+%\blankline
+%
+%Classroom Assistant, Sheffield International College \hfill {2012 -- 2014}
+%\begin{innerlist}[topsep=0ex]
+%	\item[] Responsible for delivering seminars for Physics, Chemistry and Mathematics
+%\end{innerlist}
+%%%
+%\section{References}
+%Philip McCann
+%\begin{innerlist}
+%	\item[] Chair in Urban and Regional Economics \hfill{p.mccann@sheffield.ac.uk}\\% \hfill {Phone: N/A}\\
+%	Management School, \\The University of Sheffield
+%\end{innerlist}
+%
+%\blankline
+%
+%Martin Mayfield
+%\begin{innerlist}
+%\item[] Professor of Engineering Design \hfill{martin.mayfield@sheffield.ac.uk}\\%\hfill {Phone: +44 (0) 114 222 5054}\\
+%Department of Civil \& Structural Engineering, \\The University of Sheffield
+%\end{innerlist}
+%
+%\blankline
+%
+%Danielle Densley Tingley
+%\begin{innerlist}
+%	\item[] Senior Lecturer in Architectural Engineering \hfill{d.densleytingley@sheffield.ac.uk}\\%\hfill {Phone: +44 (0) 114 222 5054}\\
+%	Department of Civil \& Structural Engineering, \\The University of Sheffield
+%\end{innerlist}
+\
+
+
+%\blankline
+
+%Abigail Hathway
+%\begin{innerlist}
+%	\item[] Senior Lecturer \hfill{a.hathway@sheffield.ac.uk}\\% \hfill {Phone: N/A}\\
+%	Department of Civil \& Structural Engineering, \\The University of Sheffield
+%\end{innerlist}
+
+%\blankline
+
+%Buick Davison
+%\begin{innerlist}
+%\item[] Deputy Head of Department, Professor of Structural Engineering \hfill{j.davison@sheffield.ac.uk}\\ \hfill {Phone: +44 (0) 114 222 5354}\\
+%Department of Civil \& Structural Engineering, \\The University of Sheffield
+%\end{innerlist}	
+
+%\halfblankline
+%Abigail Hathway
+%\begin{innerlist}
+%\item[] Senior Lecturer in Architectural Technologies\hfill{a.hathway@sheffield.ac.uk}\\ %\hfill {Phone: +44 (0) 114 222 5702}\\
+%Department of Civil \& Structural Engineering, \\The University of Sheffield
+%\end{innerlist}
+
+%\bigskip
+%\bigskip
+%\bigskip!
+%\bigskip
+%\vfill
+\centering\footnotesize{Last updated~\today~---~Most artisanally typeset in \LaTeX}
+%\section{Hardware and Software Skills}
+%\begin{comment}
+%Computer Programming:
+%%
+%\begin{innerlist}
+%    \item C, C$+$$+$, Java, JavaScript, NetLogo, Pascal, Perl, PHP,
+%        Lisp, UNIX shell scripting (including POSIX.2), GNU make,
+%        AppleScript, SQL, MySQL, \Matlab, Maple, Mathematica, and others
+%\end{innerlist}
+%
+%\halfblankline
+%\end{comment}
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%
+
+
+%Research has been picked up by UK2070Commission 2020 http://www.greengauge21.net/wp-content/uploads/Go-Big-Go-Local-the-UK-2070-Report-on-a-New-Deal-for-Levelling-Up-the-UK.pdf
